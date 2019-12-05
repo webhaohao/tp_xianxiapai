@@ -14,12 +14,6 @@ class Banner
   {     
         public function getBanner($id)
         {
-            // $data = [
-            //       'id' => $id
-            // ];
-            // $validate = new IDMustBePostiveInt();
-            // $result = $validate ->batch()->check($data); 
-            // echo $result;
             (new IDMustBePostiveInt()) -> goCheck();
         }
         
