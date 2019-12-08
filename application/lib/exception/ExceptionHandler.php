@@ -20,7 +20,7 @@ class ExceptionHandler extends Handle {
     private $errorCode;
     //需要返回当前的请求的URL路径
 
-    public function  render(Exception $e){
+    public function  render(\Exception $e){
         if($e instanceof BaseException){
             // 如果是自定义的异常
             $this -> code  = $e->code;
@@ -51,7 +51,7 @@ class ExceptionHandler extends Handle {
         ];
         return json($result,$this->code);
     }
-    private function recordErrorLog(Exception $e){
+    private function recordErrorLog(\Exception $e){
         Log::init([
             'type'=>'File',
             'path'=>LOG_PATH,
