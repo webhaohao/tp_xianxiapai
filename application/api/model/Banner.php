@@ -14,6 +14,7 @@ use think\Exception;
 use think\Model;
 
 class Banner extends  Model {
+    // protected $table = 'category';
     public static function getBannerByID($id){
         // 根据 banner id 获取banner信息
 //       $result =  Db::query('select * from banner_item where banner_id = ?',[$id]);
