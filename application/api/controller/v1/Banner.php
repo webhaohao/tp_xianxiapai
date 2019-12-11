@@ -26,7 +26,7 @@ class Banner
 //                $data = $banner ->toArray();
 //                unset($data['delete_time']);
                 //$banner = BannerModel::with(['items','items.img'])->find($id);
-                if(!$banner){
+                if($banner->isEmpty()){
                    throw new BannerMissException();
                 }
                 return $banner;
