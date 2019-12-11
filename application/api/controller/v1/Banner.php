@@ -15,16 +15,21 @@ use think\Exception;
 
 class Banner
   {
-        public function getBanner($id)
-        {
-            (new IDMustBePostiveInt()) -> goCheck();
-            // $banner = BannerModel::getBannerByID($id);
-//            $banner = BannerModel::get($id);
 
-            if(!$banner){
-               throw new BannerMissException();
+        public function getBanner($id)
+            {
+                // AOP 面向切面编程
+                (new IDMustBePostiveInt()) -> goCheck();
+                $banner = BannerModel::getBannerByID($id);
+                // $banner -> hidden(['update_time','delete_time']);
+//                $banner -> visible(['id','update_time']);
+//                $data = $banner ->toArray();
+//                unset($data['delete_time']);
+                //$banner = BannerModel::with(['items','items.img'])->find($id);
+                if(!$banner){
+                   throw new BannerMissException();
+                }
+                return $banner;
             }
-            return $banner;
-        }
 
   }
