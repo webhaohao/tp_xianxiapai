@@ -1,0 +1,22 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: web_haohao
+ * Date: 2019/12/13
+ * Time: 12:32
+ */
+
+namespace app\api\controller\v1;
+
+
+use app\api\service\UserToken;
+use app\api\validate\TokenGet;
+
+class Token {
+        public function getToken($code=""){
+            (new TokenGet())->goCheck();
+            $ut = new UserToken();
+            $token = $ut -> get($code);
+            return $token;
+        }
+}
