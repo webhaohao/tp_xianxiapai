@@ -7,5 +7,6 @@
  */
 return [
      // 文件存放根路径
-     'img_prefix' => 'http://z.cn/images'
+     'img_prefix' => 'http://z.cn/images',
+     'token_expire_in' => 7200
 ];
