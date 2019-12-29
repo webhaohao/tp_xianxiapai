@@ -80,6 +80,8 @@ class UserToken extends Token {
     private function prepareCachedValue($wxResult,$uid){
         $cachedValue = $wxResult;
         $cachedValue['uid'] = $uid;
+        // scope= 16 app用户的权限
+        // scope = 32 cms管理员的权限
         $cachedValue['scope'] = 16;
         return $cachedValue;
     }

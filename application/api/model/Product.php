@@ -41,4 +41,7 @@ class Product extends BaseModel {
                             ->find($id);
             return $products;
         }
+        public function deleteOne($id){
+
+        }
 }
