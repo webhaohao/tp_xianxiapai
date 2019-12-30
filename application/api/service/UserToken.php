@@ -9,8 +9,10 @@
 namespace app\api\service;
 
 
+use app\lib\enum\ScopeEnum;
 use app\lib\exception\TokenException;
 use app\lib\exception\WeChatException;
+//use app\lib\enum\ScopeEnum;
 use think\Exception;
 use app\api\model\User as UserModel;
 class UserToken extends Token {
@@ -82,7 +84,7 @@ class UserToken extends Token {
         $cachedValue['uid'] = $uid;
         // scope= 16 app用户的权限
         // scope = 32 cms管理员的权限
-        $cachedValue['scope'] = 16;
+        $cachedValue['scope'] = ScopeEnum::User;
         return $cachedValue;
     }
     private function newUser($openid){

@@ -2,12 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: web_haohao
- * Date: 2019/12/29
- * Time: 14:19
+ * Date: 2019/12/30
+ * Time: 12:33
  */
 
-class ScopeEnum {
-     const User = 16;
+namespace app\lib\enum;
 
-     const Super = 32;
+
+class ScopeEnum {
+    const User = 16;
+
+    const Super = 32;
 }
