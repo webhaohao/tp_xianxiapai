@@ -389,7 +389,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `openid` varchar(50) NOT NULL,
   `nickname` varchar(50) DEFAULT NULL,
-  `extend` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL COMMENT '注册时间',
   `update_time` int(11) DEFAULT NULL,
@@ -423,3 +423,21 @@ CREATE TABLE `user_address` (
 -- ----------------------------
 -- Records of user_address
 -- ----------------------------
+
+DROP TABLE IF EXISTS `activity`;
+
+CREATE TABLE  `activity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) NOT NULL COMMENT '活动标题',
+  `start_time` int(11) NOT NULL COMMENT '开始时间',
+  `end_time` int(11) NOT NULL COMMENT '结束时间',
+  `location` varchar(20) NOT NULL COMMENT '活动地点',
+  `number` varchar(20) NOT NULL COMMENT '人数',
+  `detail` varchar(100) NOT NULL COMMENT '详情',
+  `delete_time` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL COMMENT '外键',
+  `category_id` int(11) NOT NULL COMMIT '类别',
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
