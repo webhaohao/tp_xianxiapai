@@ -436,7 +436,9 @@ CREATE TABLE  `activity` (
   `detail` varchar(100) NOT NULL COMMENT '详情',
   `delete_time` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL COMMENT '外键',
-  `category_id` int(11) NOT NULL COMMIT '类别',
+  `category_id` int(11) NOT NULL COMMENT '类别',
+  `img_id` int(11) DEFAULT NULL COMMENT '图片外键',
+  `main_img_url` varchar(255) DEFAULT NULL COMMENT '主图ID号，这是一个反范式设计，有一定的冗余',
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`)

@@ -19,5 +19,7 @@ class User extends BaseModel {
 
             return $user;
         }
-
+        public  function activity(){
+            return  $this->hasMany('Activity','user_id','id');
+        }
 }

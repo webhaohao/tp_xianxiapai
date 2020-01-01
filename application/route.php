@@ -36,3 +36,18 @@ Route::post('api/:version/token/user','api/:version.Token/getToken');
 Route::post('api/:version/address','api/:version.Address/createOrUpdateAddress');
 
 Route::get('api/:version/second','api/:version.Address/second');
+
+
+// add activity
+
+Route::post('api/:version/activity','api/:version.Activity/createOrUpdateActivity');
+
+Route::post('api/:version/order','api/:version.Order/placeOrder');
+
+
+
+
+
+//upload image
+
+Route::post('api/:version/upload/image','api/:version.Upload/image');
