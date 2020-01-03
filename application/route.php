@@ -50,4 +50,4 @@ Route::post('api/:version/order','api/:version.Order/placeOrder');
 
 //upload image
 
-Route::post('api/:version/upload/image','api/:version.Upload/image');
+Route::post('api/:version/activity/upload_image','api/:version.Activity/wxUploadImage');

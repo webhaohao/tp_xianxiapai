@@ -12,6 +12,7 @@ namespace app\api\controller\v1;
 use app\api\controller\BaseController;
 use app\api\model\User as UserModel;
 use app\api\service\Token as TokenService;
+use app\api\service\Upload;
 use app\api\validate\ActivityNew;
 use app\lib\exception\SuccessMessage;
 use app\lib\exception\UserException;
@@ -43,5 +44,12 @@ class Activity extends BaseController {
             $user -> activity ->save($dataArray);
         }
         return json(new SuccessMessage(),201);
+    }
+
+    public function wxUploadImage(){
+        $serverName = (new Upload())->image();
+        return [
+             'url' => config('setting.img_prefix').$serverName
+        ];
     }
 }

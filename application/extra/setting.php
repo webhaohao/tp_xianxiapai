@@ -7,6 +7,7 @@
  */
 return [
      // 文件存放根路径
-     'img_prefix' => 'http://z.cn/images',
-     'token_expire_in' => 7200
+     'img_prefix' => 'http://127.0.0.1/tp_xianxiapai/public/images',
+     'token_expire_in' => 7200,
+     'upload_image_url' => 'http://127.0.0.1/tp_xianxiapai/public/uploads'
 ];
