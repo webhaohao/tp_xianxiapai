@@ -18,7 +18,6 @@ class ActivityNew extends BaseValidate {
         'number' => 'require|isNotEmpty',
         'detail' => 'require|isNotEmpty',
         'category_id'=>'require|isNotEmpty',
-        'img_id' => 'require|isNotEmpty',
         'main_img_url'=>'require|isNotEmpty'
     ];
 }

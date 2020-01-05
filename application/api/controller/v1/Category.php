@@ -21,4 +21,8 @@ class Category {
         }
         return $categories;
     }
+    public function getCategoryByAccId($categoryId){
+        $category = CategoryModel::get($categoryId);
+        return $category;
+    }
 }

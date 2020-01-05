@@ -64,12 +64,12 @@ CREATE TABLE `category` (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('2', '果味', '6', null, null, null);
-INSERT INTO `category` VALUES ('3', '蔬菜', '5', null, null, null);
-INSERT INTO `category` VALUES ('4', '炒货', '7', null, null, null);
-INSERT INTO `category` VALUES ('5', '点心', '4', null, null, null);
-INSERT INTO `category` VALUES ('6', '粗茶', '8', null, null, null);
-INSERT INTO `category` VALUES ('7', '淡饭', '9', null, null, null);
+INSERT INTO `category` VALUES ('2', '美术', '6', null, null, null);
+INSERT INTO `category` VALUES ('3', '游戏', '5', null, null, null);
+INSERT INTO `category` VALUES ('4', '娱乐', '7', null, null, null);
+INSERT INTO `category` VALUES ('5', '交友', '4', null, null, null);
+INSERT INTO `category` VALUES ('6', '旅游', '8', null, null, null);
+INSERT INTO `category` VALUES ('7', '学习', '9', null, null, null);
 
 -- ----------------------------
 -- Table structure for image
@@ -438,8 +438,44 @@ CREATE TABLE  `activity` (
   `user_id` int(11) NOT NULL COMMENT '外键',
   `category_id` int(11) NOT NULL COMMENT '类别',
   `img_id` int(11) DEFAULT NULL COMMENT '图片外键',
+  `scope` int(11) NOT NULL COMMENT '权限，谁发的活动',
+  `integral` int(11) NOT NULL COMMENT  '积分',
+  `join_people` int(11) NOT NULL DEFAULT '0' COMMENT '参加的人数',
   `main_img_url` varchar(255) DEFAULT NULL COMMENT '主图ID号，这是一个反范式设计，有一定的冗余',
   `update_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_id` (`user_id`)
+  PRIMARY KEY (`id`)
+--   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+
+
+-- ----------------------------
+-- Table structure for activity_image
+-- ----------------------------
+DROP TABLE IF EXISTS `activity_image`;
+CREATE TABLE `activity_image` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `img_id` int(11) NOT NULL COMMENT '外键，关联图片表',
+  `delete_time` int(11) DEFAULT NULL COMMENT '状态，主要表示是否删除，也可以扩展其他状态',
+  `order` int(11) NOT NULL DEFAULT '0' COMMENT '图片排序序号',
+  `activity_id` int(11) NOT NULL COMMENT '活动id，外键',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of activity_image
+-- ----------------------------
+-- ----------------------------
+-- Table structure for user_activity
+-- ----------------------------
+DROP TABLE IF EXISTS ` user_activity`;
+CREATE TABLE `user_activity` (
+  `user_id` int(11) NOT NULL COMMENT '联合主键，用户id',
+  `activity_id` int(11) NOT NULL COMMENT '联合主键，活动id',
+  `delete_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`user_id`,`activity_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of  user_activity
+-- ----------------------------

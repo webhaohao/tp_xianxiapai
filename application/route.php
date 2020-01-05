@@ -31,6 +31,8 @@ Route::get('api/:version/product/:id','api/:version.Product/getOne',[],['id'=>'\
 
 Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
 
+Route::get('api/:version/category/by_accid','api/:version.Category/getCategoryByAccId');
+
 Route::post('api/:version/token/user','api/:version.Token/getToken');
 
 Route::post('api/:version/address','api/:version.Address/createOrUpdateAddress');
@@ -40,8 +42,14 @@ Route::get('api/:version/second','api/:version.Address/second');
 
 // add activity
 
-Route::post('api/:version/activity','api/:version.Activity/createOrUpdateActivity');
+Route::post('api/:version/create_activity','api/:version.Activity/createOrUpdateActivity');
 
+Route::get('api/:version/activity/by_scope/:scope','api/:version.Activity/getActivityByScope');
+
+Route::post('api/:version/activity/getReleaserinfo_by_scope_and_userid','api/:version.Activity/getReleaserInfoByScopeAndUserId');
+
+
+//order
 Route::post('api/:version/order','api/:version.Order/placeOrder');
 
 
@@ -51,3 +59,9 @@ Route::post('api/:version/order','api/:version.Order/placeOrder');
 //upload image
 
 Route::post('api/:version/activity/upload_image','api/:version.Activity/wxUploadImage');
+
+
+
+// user
+
+Route::post('api/:version/user/update_wx_userinfo','api/:version.User/UpdateWxUserInfo');
