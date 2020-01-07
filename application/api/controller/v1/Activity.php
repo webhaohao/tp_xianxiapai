@@ -15,9 +15,11 @@ use app\api\model\ActivityImage as ActivityImageModel;
 use app\api\model\Category as CategoryModel;
 use app\api\model\Image as ImageModel;
 use app\api\model\User as UserModel;
+use app\api\model\UserActivity;
 use app\api\service\Token as TokenService;
 use app\api\service\Upload;
 use app\api\validate\ActivityNew;
+use app\lib\enum\ScopeEnum;
 use app\lib\exception\SuccessMessage;
 use app\lib\exception\UserException;
 use think\Cache;
@@ -43,9 +45,9 @@ class Activity extends BaseController {
         $dataArray = $validate -> getDataByRule(input('post.'));
         $detailImgs = input('post.detail_imgs/a');
         $dataArray['scope'] = $scope;
-        $dataArray['user_id'] = $uid;
+        $dataArray['release_id'] = $uid;
         // 活动积分暂时默认10
-        $dataArray['join_people'] = 1;
+//        $dataArray['join_people'] = 1;
         $dataArray['integral'] = 10;
         $activityModel = new ActivityModel();
         $activityModel ->data($dataArray,true);
@@ -68,7 +70,19 @@ class Activity extends BaseController {
             $activityImageModel = new ActivityImageModel();
             $activityImageModel -> saveAll($imgIds);
         }
+        // 如果权限的scope为用户 则在 user_activity 插入一条记录
+        if($scope == ScopeEnum::User){
 
+            // UserActivity::save();
+            $userActivity =  new UserActivity();
+            $userActivity->data(
+                    [
+                        'user_id' => $uid,
+                        'activity_id'=>$activityId
+                    ]
+            );
+            $userActivity->save();
+        }
         return json(new SuccessMessage(),201);
     }
     // 根据客户端传入是个人活动还是组织活动....
@@ -89,5 +103,9 @@ class Activity extends BaseController {
         if($data['scope']==16){
            return UserModel::get($data['user_id']);
         }
+    }
+
+    public function getJoinPoepleInfoByActivityId(){
+
     }
 }

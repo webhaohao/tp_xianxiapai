@@ -435,7 +435,7 @@ CREATE TABLE  `activity` (
   `number` varchar(20) NOT NULL COMMENT '人数',
   `detail` varchar(100) NOT NULL COMMENT '详情',
   `delete_time` int(11) DEFAULT NULL,
-  `user_id` int(11) NOT NULL COMMENT '外键',
+  `release_id` int(11) NOT NULL COMMENT '外键',
   `category_id` int(11) NOT NULL COMMENT '类别',
   `img_id` int(11) DEFAULT NULL COMMENT '图片外键',
   `scope` int(11) NOT NULL COMMENT '权限，谁发的活动',

@@ -48,6 +48,10 @@ Route::get('api/:version/activity/by_scope/:scope','api/:version.Activity/getAct
 
 Route::post('api/:version/activity/getReleaserinfo_by_scope_and_userid','api/:version.Activity/getReleaserInfoByScopeAndUserId');
 
+// get Join poopleInfo by Activity
+
+Route::get('api/:version/activity/getjoinpeopleinfo_by_activityid/:id','api/:version.Activity/getJoinPoepleInfoByActivityId');
+
 
 //order
 Route::post('api/:version/order','api/:version.Order/placeOrder');
