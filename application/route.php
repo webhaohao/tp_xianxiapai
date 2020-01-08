@@ -33,7 +33,17 @@ Route::get('api/:version/category/all','api/:version.Category/getAllCategories')
 
 Route::get('api/:version/category/by_accid','api/:version.Category/getCategoryByAccId');
 
+
+
+// Token
 Route::post('api/:version/token/user','api/:version.Token/getToken');
+
+Route::post('api/:version/token/verify','api/:version.Token/verifyToken');
+
+Route::post('api/:version/token/app','api/:version.Token/getAppToken');
+
+
+// User
 
 Route::get('api/:version/user/check_user/:activityId','api/:version.User/checkUserIsJoinActivity');
 

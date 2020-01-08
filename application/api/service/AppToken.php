@@ -34,4 +34,16 @@ class AppToken extends Token {
             return $token;
         }
     }
+    private function saveToCache($values){
+        $token = self::generateToken();
+        $expire_in = config('setting.token_expire_in');
+        $result = cache($token, json_encode($values), $expire_in);
+        if(!$result){
+            throw new TokenException([
+                'msg' => '服务器缓存异常',
+                'errorCode' => 10005
+            ]);
+        }
+        return $token;
+    }
 }
