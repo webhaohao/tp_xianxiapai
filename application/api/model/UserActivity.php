@@ -10,5 +10,12 @@ namespace app\api\model;
 
 
 class UserActivity extends BaseModel {
-
+        public static function check($userId,$activityId){
+           return self::where('user_id','=',$userId)
+                ->where('activity_id','=',$activityId)
+                ->find();
+        }
+        public static function getCountByActivityId($id){
+          return self::where('activity_id','=',$id)->count();
+        }
 }

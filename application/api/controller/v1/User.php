@@ -11,6 +11,7 @@ use app\api\service\Token as TokenService;
 use app\api\validate\UserUpdate;
 use app\api\model\User as UserModel;
 use app\lib\exception\SuccessMessage;
+use app\api\model\UserActivity as UserActivityModel;
 
 class User {
         protected $beforeActionList = [
@@ -26,5 +27,13 @@ class User {
             $dataArray = $validate -> getDataByRule(input('post.'));
             $user -> save($dataArray);
             return json(new SuccessMessage(),201);
+        }
+        public function checkUserIsJoinActivity($activityId){
+            $uid = TokenService::getCurrentUid();
+            $isExist = UserActivityModel::check($uid,$activityId);
+            if(empty($isExist)){
+                return ['isExist' => 0];
+            }
+            return ['isExist' => 1];
         }
 }

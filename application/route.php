@@ -35,6 +35,8 @@ Route::get('api/:version/category/by_accid','api/:version.Category/getCategoryBy
 
 Route::post('api/:version/token/user','api/:version.Token/getToken');
 
+Route::get('api/:version/user/check_user/:activityId','api/:version.User/checkUserIsJoinActivity');
+
 Route::post('api/:version/address','api/:version.Address/createOrUpdateAddress');
 
 Route::get('api/:version/second','api/:version.Address/second');
@@ -46,11 +48,11 @@ Route::post('api/:version/create_activity','api/:version.Activity/createOrUpdate
 
 Route::get('api/:version/activity/by_scope/:scope','api/:version.Activity/getActivityByScope');
 
-Route::post('api/:version/activity/getReleaserinfo_by_scope_and_userid','api/:version.Activity/getReleaserInfoByScopeAndUserId');
+Route::post('api/:version/activity/join_activity','api/:version.Activity/userJoinActivity');
 
 // get Join poopleInfo by Activity
 
-Route::get('api/:version/activity/getjoinpeopleinfo_by_activityid/:id','api/:version.Activity/getJoinPoepleInfoByActivityId');
+Route::get('api/:version/activity/detail/:id','api/:version.Activity/getActivityDetailById');
 
 
 //order

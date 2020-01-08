@@ -12,11 +12,11 @@ namespace app\api\controller\v1;
 use app\api\controller\BaseController;
 use app\api\model\Activity as ActivityModel;
 use app\api\model\ActivityImage as ActivityImageModel;
-use app\api\model\Category as CategoryModel;
 use app\api\model\Image as ImageModel;
 use app\api\model\User as UserModel;
 use app\api\model\UserActivity;
 use app\api\service\Token as TokenService;
+use app\api\service\Activity as ActivityService;
 use app\api\service\Upload;
 use app\api\validate\ActivityNew;
 use app\lib\enum\ScopeEnum;
@@ -105,7 +105,37 @@ class Activity extends BaseController {
         }
     }
 
-    public function getJoinPoepleInfoByActivityId(){
+    public function getActivityDetailById($id)
+    {
+        return ActivityModel::getDetailByActivityId($id);
+    }
+    public function userJoinActivity(){
+        $activityId = input('post.activityId');
+        $activityService = new ActivityService();
+        $isJoin = $activityService->userJoinActivity($activityId);
+        $scope = TokenService::getCurrentTokenVar('scope');
+        $uid = TokenService::getCurrentUid();
+        $user = UserModel::get($uid);
+        if(!$user){
+            throw new UserException();
+        }
+        if($isJoin){
+            if($scope == ScopeEnum::User){
 
+                // UserActivity::save();
+                $userActivity =  new UserActivity();
+                $userActivity->data(
+                    [
+                        'user_id' => $uid,
+                        'activity_id'=>$activityId
+                    ]
+                );
+                $userActivity->save();
+                return json(new SuccessMessage(),201);
+            }
+        }
+        else{
+
+        }
     }
 }

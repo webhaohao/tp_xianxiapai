@@ -19,11 +19,18 @@ class Activity extends BaseModel{
             $activity = self::with(['items','items.img'])->select($ids);
             return $activity;
         }
+        public static function getDetailByActivityId($id){
+            return self::with(['users','items','items.img'])->find($id);
+        }
 //        public function catories(){
 //            return $this->hasOne('Category');
 //        }
         public function items(){
             return $this -> hasMany('ActivityImage','activity_id','id');
+        }
+
+        public function users(){
+            return $this->belongsToMany('User', 'user_activity', 'user_id', 'activity_id');
         }
         // 获取器
         public function getMainImgUrlAttr($value,$data){
