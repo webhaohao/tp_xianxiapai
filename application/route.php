@@ -81,3 +81,8 @@ Route::post('api/:version/activity/upload_image','api/:version.Activity/wxUpload
 // user
 
 Route::post('api/:version/user/update_wx_userinfo','api/:version.User/UpdateWxUserInfo');
+
+
+//  ThirdApp
+
+Route::get('api/:version/thirdapp/getUserInfo','api/:version.ThirdApp/getThirdAppInfo');

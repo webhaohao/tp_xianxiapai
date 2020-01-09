@@ -379,7 +379,7 @@ CREATE TABLE `third_app` (
 -- ----------------------------
 -- Records of third_app
 -- ----------------------------
-INSERT INTO `third_app` VALUES ('1', 'starcraft', '777*777', 'CMS', '32', 'Super', null, null);
+INSERT INTO `third_app` VALUES ('1', 'xianxiapai', 'xianxiapai666', 'CMS', '32', 'Super', null, null);
 
 -- ----------------------------
 -- Table structure for user
@@ -478,4 +478,55 @@ CREATE TABLE `user_activity` (
 
 -- ----------------------------
 -- Records of  user_activity
+-- ----------------------------
+
+
+
+-- ----------------------------
+-- Table structure for news
+-- ----------------------------
+DROP TABLE IF EXISTS `news`;
+
+CREATE TABLE  `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) NOT NULL COMMENT '新闻标题',
+  `detail` varchar(100) NOT NULL COMMENT '新闻详情',
+  `delete_time` int(11) DEFAULT NULL,
+  `category_id` int(11) NOT NULL COMMENT '类别',
+  `img_id` int(11) DEFAULT NULL COMMENT '图片外键',
+  `main_img_url` varchar(255) DEFAULT NULL COMMENT '主图ID号，这是一个反范式设计，有一定的冗余',
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+--   UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+-- ----------------------------
+-- Records of  news
+-- ----------------------------
+
+
+-- ----------------------------
+-- Table structure for news_category
+-- ----------------------------
+DROP TABLE IF EXISTS `news_category`;
+
+CREATE TABLE  `news_category` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL COMMENT '分类名称',
+  `topic_img_id` int(11) DEFAULT NULL COMMENT '外键，关联image表',
+  `delete_time` int(11) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL COMMENT '描述',
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+--   UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO `news_category` VALUES ('2', '美术', '6', null, null, null);
+INSERT INTO `news_category` VALUES ('3', '游戏', '5', null, null, null);
+INSERT INTO `news_category` VALUES ('4', '娱乐', '7', null, null, null);
+INSERT INTO `news_category` VALUES ('5', '交友', '4', null, null, null);
+INSERT INTO `news_category` VALUES ('6', '旅游', '8', null, null, null);
+INSERT INTO `news_category` VALUES ('7', '学习', '9', null, null, null);
+-- ----------------------------
+-- Records of  news
 -- ----------------------------
