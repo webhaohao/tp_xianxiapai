@@ -490,6 +490,7 @@ DROP TABLE IF EXISTS `news`;
 CREATE TABLE  `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(30) NOT NULL COMMENT '新闻标题',
+  `abstract` varchar(100) NOT NULL COMMENT '新闻摘要',
   `detail` varchar(100) NOT NULL COMMENT '新闻详情',
   `delete_time` int(11) DEFAULT NULL,
   `category_id` int(11) NOT NULL COMMENT '类别',
