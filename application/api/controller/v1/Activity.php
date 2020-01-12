@@ -13,6 +13,7 @@ use app\api\controller\BaseController;
 use app\api\model\Activity as ActivityModel;
 use app\api\model\ActivityImage as ActivityImageModel;
 use app\api\model\Image as ImageModel;
+use app\api\model\ThirdApp;
 use app\api\model\User as UserModel;
 use app\api\model\UserActivity;
 use app\api\service\Token as TokenService;
@@ -39,7 +40,12 @@ class Activity extends BaseController {
         // 根据用户发布的活动，是增加还是更新
         $uid = TokenService::getCurrentUid();
         $scope = TokenService::getCurrentTokenVar('scope');
-        $user = UserModel::get($uid);
+        if($scope == ScopeEnum::User) {
+            $user = UserModel::get($uid);
+        }
+        else{
+            $user = ThirdApp::get($uid);
+        }
         if(!$user){
             throw new UserException();
         }

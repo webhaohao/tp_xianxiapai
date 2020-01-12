@@ -33,7 +33,7 @@ Route::get('api/:version/category/all','api/:version.Category/getAllCategories')
 
 Route::get('api/:version/category/by_accid','api/:version.Category/getCategoryByAccId');
 
-
+Route::get('api/:version/newsCategory/all','api/:version.NewsCategory/getAllNewsCategories');
 
 // Token
 Route::post('api/:version/token/user','api/:version.Token/getToken');
@@ -70,7 +70,13 @@ Route::post('api/:version/order','api/:version.Order/placeOrder');
 
 
 
+// news
 
+Route::post('api/:version/create_news','api/:version.News/createOrUpdateNews');
+
+Route::get('api/:version/news/detail_by_CategoryId','api/:version.News/getNewsDetailByCategoryId');
+
+Route::get('api/:version/news/detail/:id','api/:version.News/getNewsDetailById');
 
 //upload image
 
@@ -81,3 +87,8 @@ Route::post('api/:version/activity/upload_image','api/:version.Activity/wxUpload
 // user
 
 Route::post('api/:version/user/update_wx_userinfo','api/:version.User/UpdateWxUserInfo');
+
+
+//  ThirdApp
+
+Route::get('api/:version/thirdapp/getUserInfo','api/:version.ThirdApp/getThirdAppInfo');
