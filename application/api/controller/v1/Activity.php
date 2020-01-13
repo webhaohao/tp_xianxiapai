@@ -21,6 +21,7 @@ use app\api\service\Activity as ActivityService;
 use app\api\service\Upload;
 use app\api\validate\ActivityNew;
 use app\lib\enum\ScopeEnum;
+use app\lib\exception\ActivityException;
 use app\lib\exception\SuccessMessage;
 use app\lib\exception\UserException;
 use think\Cache;
@@ -128,7 +129,6 @@ class Activity extends BaseController {
         if($isJoin){
             if($scope == ScopeEnum::User){
 
-                // UserActivity::save();
                 $userActivity =  new UserActivity();
                 $userActivity->data(
                     [
@@ -141,7 +141,7 @@ class Activity extends BaseController {
             }
         }
         else{
-
+            throw new ActivityException();
         }
     }
 }

@@ -29,6 +29,14 @@ class Order
         $this->oProducts = $oProducts;
         $this->products = $this->getProductsByOrder($oProducts);
         $this->uid = $uid;
+        $status = $this -> getOrderStatus();
+        if($status['pass']){
+            $status['order_id'] = -1;
+            return $status;
+        }
+
+        // 开始创建订单
+
     }
 
     private function getOrderStatus()
