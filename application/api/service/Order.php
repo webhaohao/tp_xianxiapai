@@ -37,8 +37,18 @@ class Order
 
         // 开始创建订单
 
+        $orderSnap = $this -> snapOrder();
+
     }
 
+    // 生成订单快照
+    private function snapOrder(){
+        $snap = [
+            'orderPrice'=>0,
+            'totalCount'=>0,
+            'pStatus' => []
+        ];
+    }
     private function getOrderStatus()
     {
         $status = [
