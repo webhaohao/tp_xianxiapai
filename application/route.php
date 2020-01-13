@@ -92,3 +92,10 @@ Route::post('api/:version/user/update_wx_userinfo','api/:version.User/UpdateWxUs
 //  ThirdApp
 
 Route::get('api/:version/thirdapp/getUserInfo','api/:version.ThirdApp/getThirdAppInfo');
+
+
+// About
+
+Route::post('api/:version/about/createOrUpdate','api/:version.About/createOrUpdateAbout');
+
+Route::get('api/:version/about/get','api/:version.About/getAbout');

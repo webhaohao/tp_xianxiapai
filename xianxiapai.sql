@@ -531,3 +531,21 @@ INSERT INTO `news_category` VALUES ('7', '学习', '9', null, null, null);
 -- ----------------------------
 -- Records of  news
 -- ----------------------------
+
+
+-- ----------------------------
+-- Table structure for about
+-- ----------------------------
+DROP TABLE IF EXISTS `about`;
+
+CREATE TABLE  `about` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `delete_time` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL COMMENT '描述',
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of  about
+-- ----------------------------
