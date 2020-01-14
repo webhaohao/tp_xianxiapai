@@ -18,4 +18,8 @@ class UserActivity extends BaseModel {
         public static function getCountByActivityId($id){
           return self::where('activity_id','=',$id)->count();
         }
+        public static function getUserJoinActivityIds($id){
+           $activityIds = self::where('user_id','=',$id)->column('activity_id');
+           return $activityIds;
+        }
 }

@@ -22,9 +22,6 @@ class Activity extends BaseModel{
         public static function getDetailByActivityId($id){
             return self::with(['users','items','items.img'])->find($id);
         }
-//        public function catories(){
-//            return $this->hasOne('Category');
-//        }
         public function items(){
             return $this -> hasMany('ActivityImage','activity_id','id');
         }

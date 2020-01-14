@@ -60,6 +60,10 @@ Route::get('api/:version/activity/by_scope/:scope','api/:version.Activity/getAct
 
 Route::post('api/:version/activity/join_activity','api/:version.Activity/userJoinActivity');
 
+Route::get('api/:version/activity/byKeywords','api/:version.Activity/getActivityByKeywords');
+
+Route::post('api/:version/activity/search','api/:version.Activity/searchActivityByKeywords');
+
 // get Join poopleInfo by Activity
 
 Route::get('api/:version/activity/detail/:id','api/:version.Activity/getActivityDetailById');
@@ -87,6 +91,12 @@ Route::post('api/:version/activity/upload_image','api/:version.Activity/wxUpload
 // user
 
 Route::post('api/:version/user/update_wx_userinfo','api/:version.User/UpdateWxUserInfo');
+
+Route::get('api/:version/user/released_activity','api/:version.User/getUserReleasedActivity');
+
+Route::get('api/:version/user/join_activity','api/:version.User/getUserJoinActivity');
+
+Route::get('api/:version/user/wxUserInfo','api/:version.User/getWxUserInfo');
 
 
 //  ThirdApp

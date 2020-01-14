@@ -390,6 +390,7 @@ CREATE TABLE `user` (
   `openid` varchar(50) NOT NULL,
   `nickname` varchar(50) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
+  `integral` int(11) NOT NULL DEFAULT '0' COMMENT '用户积分',
   `delete_time` int(11) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL COMMENT '注册时间',
   `update_time` int(11) DEFAULT NULL,

@@ -40,8 +40,13 @@ class Activity extends BaseController {
         // 根据用户发布的活动，是增加还是更新
         $uid = TokenService::getCurrentUid();
         $scope = TokenService::getCurrentTokenVar('scope');
+        $dataArray = $validate -> getDataByRule(input('post.'));
         if($scope == ScopeEnum::User) {
             $user = UserModel::get($uid);
+            $integral = $user -> integral;
+            $integral += $dataArray['number'];
+            $user -> integral = $integral;
+            $user ->save();
         }
         else{
             $user = ThirdApp::get($uid);
@@ -49,13 +54,12 @@ class Activity extends BaseController {
         if(!$user){
             throw new UserException();
         }
-        $dataArray = $validate -> getDataByRule(input('post.'));
         $detailImgs = input('post.detail_imgs/a');
         $dataArray['scope'] = $scope;
         $dataArray['release_id'] = $uid;
-        // 活动积分暂时默认10
+        // 活动积分修改为活动的人数
 //        $dataArray['join_people'] = 1;
-        $dataArray['integral'] = 10;
+        $dataArray['integral'] = $dataArray['number'];
         $activityModel = new ActivityModel();
         $activityModel ->data($dataArray,true);
         $activityModel ->save($dataArray);
@@ -143,5 +147,15 @@ class Activity extends BaseController {
         else{
             throw new ActivityException();
         }
+    }
+
+    public function getActivityByKeywords(){
+        return ActivityModel::all([],['users','items','items.img']);
+    }
+    public function searchActivityByKeywords(){
+        $kw = input('post.value');
+        $where['title'] = ['like','%'.$kw.'%'];
+        $activity = ActivityModel::where($where)->select();
+        return $activity;
     }
 }
