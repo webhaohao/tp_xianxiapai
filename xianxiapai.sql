@@ -550,3 +550,23 @@ CREATE TABLE  `about` (
 -- ----------------------------
 -- Records of  about
 -- ----------------------------
+
+
+-- ----------------------------
+-- Table structure for activity_type
+-- ----------------------------
+DROP TABLE IF EXISTS `activity_type`;
+
+CREATE TABLE  `activity_type` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL,
+  `description` text DEFAULT NULL COMMENT '描述',
+  `scope` int(11) DEFAULT NULL COMMENT '活动权限',
+  `delete_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of  activity_type
+-- ----------------------------
