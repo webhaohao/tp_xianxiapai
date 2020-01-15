@@ -37,23 +37,30 @@ class Order
 
         // 开始创建订单
 
-        $orderSnap = $this -> snapOrder();
+        $orderSnap = $this -> snapOrder($status);
 
     }
 
     // 生成订单快照
-    private function snapOrder(){
+    private function snapOrder($status){
         $snap = [
             'orderPrice'=>0,
             'totalCount'=>0,
-            'pStatus' => []
+            'pStatus' => [],
+            'snapAddress'=>null,
+            'snapName' =>'',
+            'snapImg' => ''
         ];
+
+        $snap['orderPrice'] = $status['orderPrice'];
+        $snap['totalCount'] = $status['totalCount'];
     }
     private function getOrderStatus()
     {
         $status = [
             'pass' => true,
             'orderPrice' => 0,
+            'totalCount' => 0,
             'pStatusArray' => []
         ];
         foreach ($this->oProducts as $oProduct) {
@@ -65,7 +72,8 @@ class Order
             if (!$pStatus['haveStock']) {
                 $status['pass'] = false;
             }
-            $status['orderPrice'] == $pStatus['totalPrice'];
+            $status['orderPrice'] += $pStatus['totalPrice'];
+            $status['totalCount'] += $pStatus['count'];
             array_push($status['pStatusArray'], $pStatus);
         }
         return $status;
