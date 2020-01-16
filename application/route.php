@@ -109,3 +109,8 @@ Route::get('api/:version/thirdapp/getUserInfo','api/:version.ThirdApp/getThirdAp
 Route::post('api/:version/about/createOrUpdate','api/:version.About/createOrUpdateAbout');
 
 Route::get('api/:version/about/get','api/:version.About/getAbout');
+
+
+// activityType
+
+Route::get('api/:version/activityType/all','api/:version.ActivityType/getAllActivityType');

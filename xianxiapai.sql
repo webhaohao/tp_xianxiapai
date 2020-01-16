@@ -567,6 +567,9 @@ CREATE TABLE  `activity_type` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `activity_type` VALUES ('2', '个人活动', '个人发起的活动',16, null, null);
+INSERT INTO `activity_type` VALUES ('3', '组织活动', '管理员发的活动',24, null, null);
+INSERT INTO `activity_type` VALUES ('4', '体育活动', '体育部发布的活动',32, null, null);
 -- ----------------------------
 -- Records of  activity_type
 -- ----------------------------
