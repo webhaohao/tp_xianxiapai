@@ -438,6 +438,7 @@ CREATE TABLE  `activity` (
   `delete_time` int(11) DEFAULT NULL,
   `release_id` int(11) NOT NULL COMMENT '外键',
   `category_id` int(11) NOT NULL COMMENT '类别',
+  `activity_type_id` int(11) NOT NULL COMMENT '活动类别',
   `img_id` int(11) DEFAULT NULL COMMENT '图片外键',
   `scope` int(11) NOT NULL COMMENT '权限，谁发的活动',
   `integral` int(11) NOT NULL COMMENT  '积分',

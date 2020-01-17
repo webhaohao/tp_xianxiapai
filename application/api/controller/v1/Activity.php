@@ -15,6 +15,7 @@ use app\api\model\ActivityImage as ActivityImageModel;
 use app\api\model\Image as ImageModel;
 use app\api\model\ThirdApp;
 use app\api\model\User as UserModel;
+use app\api\model\ActivityType as ActivityTypeModel;
 use app\api\model\UserActivity;
 use app\api\service\Token as TokenService;
 use app\api\service\Activity as ActivityService;
@@ -55,10 +56,12 @@ class Activity extends BaseController {
             throw new UserException();
         }
         $detailImgs = input('post.detail_imgs/a');
+        $activityType = ActivityTypeModel::get(['scope'=>$scope]);
+        $activityTypeId = $activityType -> id;
+        $dataArray['activity_type_id'] = $activityTypeId;
         $dataArray['scope'] = $scope;
         $dataArray['release_id'] = $uid;
         // 活动积分修改为活动的人数
-//        $dataArray['join_people'] = 1;
         $dataArray['integral'] = $dataArray['number'];
         $activityModel = new ActivityModel();
         $activityModel ->data($dataArray,true);

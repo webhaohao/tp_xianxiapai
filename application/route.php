@@ -114,3 +114,5 @@ Route::get('api/:version/about/get','api/:version.About/getAbout');
 // activityType
 
 Route::get('api/:version/activityType/all','api/:version.ActivityType/getAllActivityType');
+
+Route::get('api/:version/activityType/admin','api/:version.ActivityType/getActivitiyTypeByAdmin');
