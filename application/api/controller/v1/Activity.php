@@ -56,9 +56,12 @@ class Activity extends BaseController {
             throw new UserException();
         }
         $detailImgs = input('post.detail_imgs/a');
-        $activityType = ActivityTypeModel::get(['scope'=>$scope]);
-        $activityTypeId = $activityType -> id;
-        $dataArray['activity_type_id'] = $activityTypeId;
+
+        if(empty($dataArray['activity_type_id'])){
+            $activityType = ActivityTypeModel::get(['scope'=>$scope]);
+            $activityTypeId = $activityType -> id;
+            $dataArray['activity_type_id'] = $activityTypeId;
+        }
         $dataArray['scope'] = $scope;
         $dataArray['release_id'] = $uid;
         // 活动积分修改为活动的人数

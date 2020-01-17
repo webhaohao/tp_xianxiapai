@@ -10,7 +10,8 @@ namespace app\api\model;
 
 
 class ActivityType extends BaseModel {
-//        public  function getAllActivityType(){
-//
-//        }
+        protected $hidden = ['delete_time','update_time'];
+        public  function items(){
+             return $this->hasMany('Category','activity_type_id','id');
+        }
 }

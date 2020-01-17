@@ -14,7 +14,10 @@ class ActivityType {
         public function getAllActivityType(){
              return ActivityTypeModel::all([]);
         }
+        public function getAllActivityTypeCategories(){
+            return ActivityTypeModel::all([],'items');
+        }
         public function getActivitiyTypeByAdmin(){
-             return ActivityTypeModel::all(['scope','>',16]);
+             return ActivityTypeModel::where('scope','>',16)->select();
         }
 }

@@ -55,6 +55,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '分类名称',
   `topic_img_id` int(11) DEFAULT NULL COMMENT '外键，关联image表',
+  `activity_type_id` int(11) DEFAULT NULL COMMENT '大活动类型',
   `delete_time` int(11) DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL COMMENT '描述',
   `update_time` int(11) DEFAULT NULL,
@@ -64,12 +65,12 @@ CREATE TABLE `category` (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('2', '美术', '6', null, null, null);
-INSERT INTO `category` VALUES ('3', '游戏', '5', null, null, null);
-INSERT INTO `category` VALUES ('4', '娱乐', '7', null, null, null);
-INSERT INTO `category` VALUES ('5', '交友', '4', null, null, null);
-INSERT INTO `category` VALUES ('6', '旅游', '8', null, null, null);
-INSERT INTO `category` VALUES ('7', '学习', '9', null, null, null);
+INSERT INTO `category` VALUES ('2', '美术', '6','3', null, null, null);
+INSERT INTO `category` VALUES ('3', '游戏', '5','3', null, null, null);
+INSERT INTO `category` VALUES ('4', '娱乐', '7','3', null, null, null);
+INSERT INTO `category` VALUES ('5', '交友', '4','4', null, null, null);
+INSERT INTO `category` VALUES ('6', '旅游', '8','4', null, null, null);
+INSERT INTO `category` VALUES ('7', '学习', '9','4', null, null, null);
 
 -- ----------------------------
 -- Table structure for image
