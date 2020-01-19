@@ -13,6 +13,8 @@ use think\Route;
 // Route::rule('路由表达式','路由地址','请求类型','路由参数(数组)','变量规则(数组)')
 Route::get('api/:version/banner/:id','api/:version.Banner/getBanner');
 
+Route::post('api/:version/banner/createBanner','api/:version.Banner/createBanner');
+
 Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
 
 Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
@@ -20,6 +22,7 @@ Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
 Route::get('api/:version/product/recent','api/:version.Product/getRecent');
 
 Route::get('api/:version/product/by_category','api/:version.Product/getAllInCategory');
+
 
 Route::get('api/:version/product/:id','api/:version.Product/getOne',[],['id'=>'\d+']);
 
@@ -31,9 +34,13 @@ Route::get('api/:version/product/:id','api/:version.Product/getOne',[],['id'=>'\
 
 Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
 
+Route::post('api/:version/category/create','api/:version.Category/createCategory');
+
+Route::get('api/:version/category/remove/:id','api/:version.Category/removeCategory');
+
 Route::get('api/:version/category/by_accid','api/:version.Category/getCategoryByAccId');
 
-Route::get('api/:version/newsCategory/all','api/:version.NewsCategory/getAllNewsCategories');
+Route::get('api/:version/category/byActivityTypeId','api/:version.Category/getCategoryByActivityTypeId');
 
 // Token
 Route::post('api/:version/token/user','api/:version.Token/getToken');
@@ -56,7 +63,7 @@ Route::get('api/:version/second','api/:version.Address/second');
 
 Route::post('api/:version/create_activity','api/:version.Activity/createOrUpdateActivity');
 
-Route::get('api/:version/activity/by_scope/:scope','api/:version.Activity/getActivityByScope');
+Route::get('api/:version/activity/byActivityType','api/:version.Activity/getActivitesByActivityTypeId');
 
 Route::post('api/:version/activity/join_activity','api/:version.Activity/userJoinActivity');
 
@@ -75,6 +82,11 @@ Route::post('api/:version/order','api/:version.Order/placeOrder');
 
 
 // news
+Route::get('api/:version/newsCategory/all','api/:version.NewsCategory/getAllNewsCategories');
+
+Route::get('api/:version/newsCategory/remove/:id','api/:version.NewsCategory/removeNewsCategory');
+
+Route::post('api/:version/newsCategory/create','api/:version.NewsCategory/createNewsCategory');
 
 Route::post('api/:version/create_news','api/:version.News/createOrUpdateNews');
 

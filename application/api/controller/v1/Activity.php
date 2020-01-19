@@ -103,9 +103,9 @@ class Activity extends BaseController {
         return json(new SuccessMessage(),201);
     }
     // 根据客户端传入是个人活动还是组织活动....
-    public  function getActivityByScope($scope){
+    public  function getActivitesByActivityTypeId($id,$page=1,$size=10){
         //(new IDMustBePostiveInt()) -> goCheck();
-        $activity = ActivityModel::getActivityByScope($scope);
+        $activity = ActivityModel::getActivityByActivityTypeId($id,$page=1,$size=10);
         return $activity;
     }
     public function wxUploadImage(){

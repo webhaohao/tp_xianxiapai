@@ -52,6 +52,9 @@ class User {
         public function getUserJoinActivity(){
             $uid = TokenService::getCurrentUid();
             $activityIds = UserActivityModel::getUserJoinActivityIds($uid);
+            if(empty($activityIds)){
+                return [];
+            }
             return Activity::all($activityIds,['users','items','items.img']);
         }
         public function getWxUserInfo(){

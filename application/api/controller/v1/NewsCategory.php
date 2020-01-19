@@ -9,6 +9,7 @@
 namespace app\api\controller\v1;
 
 use app\api\model\NewsCategory as NewsCategoryModel;
+use app\lib\exception\SuccessMessage;
 
 class NewsCategory {
     public function getAllNewsCategories()
@@ -18,5 +19,16 @@ class NewsCategory {
             throw new CategoryException();
         }
         return $categories;
+    }
+    public function removeNewsCategory($id){
+        NewsCategoryModel::destroy($id);
+        return json(new SuccessMessage(),201);
+    }
+    public function createNewsCategory(){
+        $newCategoryModel = new NewsCategoryModel();
+        $params = input('post.');
+        $newCategoryModel -> name = $params['name'];
+        $newCategoryModel ->save();
+        return json(new SuccessMessage(),201);
     }
 }

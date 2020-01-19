@@ -10,13 +10,13 @@ namespace app\api\model;
 
 
 class Activity extends BaseModel{
-        public  static function getActivityByScope($scope){
-            $list = self::all(['scope'=>$scope]);
-            $ids = [];
-            foreach($list as $key=>$activity){
-                array_push($ids,$activity->id);
-            }
-            $activity = self::with(['items','items.img'])->select($ids);
+        public  static function getActivityByActivityTypeId($id,$page,$size){
+//            $list = self::all(['activity_type_id'=>$id]);
+//            $ids = [];
+//            foreach($list as $key=>$activity){
+//                array_push($ids,$activity->id);
+//            }
+            $activity = self::where('activity_type_id','=',$id)->paginate($size,true,['page'=>$page]);
             return $activity;
         }
         public static function getDetailByActivityId($id){

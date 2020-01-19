@@ -34,7 +34,7 @@ class Order extends BaseController {
         'checkExclusiveScope' => ['only'=>'placeOrder'],
         'checkPrimaryScope' => ['only'=>'getDetail,getSummaryByUser']
     ];
-    public  function getSummaryByUser($page=1,$size=1){
+    public  function getSummaryByUser($page=1,$size=10){
         (new PagingParameter())->goCheck();
         $uid = Token::getCurrentUid();
         $pagingOrders=OrderModel::getSummaryByUser($uid,$page,$size);

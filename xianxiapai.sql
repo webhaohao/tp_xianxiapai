@@ -437,6 +437,7 @@ CREATE TABLE  `activity` (
   `number` varchar(20) NOT NULL COMMENT '人数',
   `detail` varchar(100) NOT NULL COMMENT '详情',
   `delete_time` int(11) DEFAULT NULL,
+  `create_time` int(11) DEFAULT NULL,
   `release_id` int(11) NOT NULL COMMENT '外键',
   `category_id` int(11) NOT NULL COMMENT '类别',
   `activity_type_id` int(11) NOT NULL COMMENT '活动类别',
@@ -570,8 +571,25 @@ CREATE TABLE  `activity_type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `activity_type` VALUES ('2', '个人活动', '个人发起的活动',16, null, null);
-INSERT INTO `activity_type` VALUES ('3', '组织活动', '管理员发的活动',24, null, null);
-INSERT INTO `activity_type` VALUES ('4', '体育活动', '体育部发布的活动',32, null, null);
+INSERT INTO `activity_type` VALUES ('3', '部门活动', '管理员发的活动',24, null, null);
+INSERT INTO `activity_type` VALUES ('4', '体育圈', '体育部发布的活动',32, null, null);
 -- ----------------------------
 -- Records of  activity_type
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for user_agreement
+-- ----------------------------
+DROP TABLE IF EXISTS `user_agreement`;
+
+CREATE TABLE  `user_agreement` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `delete_time` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL COMMENT '描述',
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of  user_agreement
 -- ----------------------------
