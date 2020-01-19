@@ -17,7 +17,7 @@ class Banner
   {
 
         public function getBanner($id)
-            {
+        {
                 // AOP 面向切面编程
                 (new IDMustBePostiveInt()) -> goCheck();
                 $banner = BannerModel::getBannerByID($id);
@@ -30,6 +30,9 @@ class Banner
                    throw new BannerMissException();
                 }
                 return $banner;
-            }
+        }
+        public function setNewsBanner($key_word,$banner_id,$main_img_url){
+
+        }
 
   }

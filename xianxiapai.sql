@@ -23,7 +23,7 @@ CREATE TABLE `banner` (
 -- Records of banner
 -- ----------------------------
 INSERT INTO `banner` VALUES ('1', '首页置顶', '首页轮播图', null, null);
-
+INSERT INTO `banner` VALUES ('2', '新鲜置顶', '新鲜轮播图', null, null);
 -- ----------------------------
 -- Table structure for banner_item
 -- ----------------------------
