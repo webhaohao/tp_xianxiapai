@@ -31,12 +31,12 @@ class News {
                 return json(new SuccessMessage(),201);
             }
         }
-        public  function getNewsDetailByCategoryId($id){
+        public  function getNewsDetailByCategoryId($id,$page=1,$size=10){
             if(empty($id)){
-               $news = NewsModel::all();
+               $news = NewsModel::paginate($size,false,['page'=>$page]);
             }
             else{
-               $news = NewsModel::all(['category_id'=>$id]);
+               $news = NewsModel::where('category_id','=',$id)->paginate($size,false,['page'=>$page]);
             }
             return $news;
         }

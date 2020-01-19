@@ -15,6 +15,8 @@ Route::get('api/:version/banner/:id','api/:version.Banner/getBanner');
 
 Route::post('api/:version/banner/createBanner','api/:version.Banner/createBanner');
 
+// Route::post('api/:version/banner/createNewsBanner','api/:version.Banner/setNewsBanner');
+
 Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
 
 Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
@@ -71,7 +73,7 @@ Route::get('api/:version/activity/byKeywords','api/:version.Activity/getActivity
 
 Route::post('api/:version/activity/search','api/:version.Activity/searchActivityByKeywords');
 
-// get Join poopleInfo by Activity
+// get Join popleInfo by Activity
 
 Route::get('api/:version/activity/detail/:id','api/:version.Activity/getActivityDetailById');
 
@@ -122,6 +124,10 @@ Route::post('api/:version/about/createOrUpdate','api/:version.About/createOrUpda
 
 Route::get('api/:version/about/get','api/:version.About/getAbout');
 
+// User-Agreement
+Route::post('api/:version/userAgreement/createOrUpdate','api/:version.UserAgreement/createOrUpdateUserAgreement');
+
+Route::get('api/:version/userAgreement/get','api/:version.UserAgreement/getUserAgreement');
 
 // activityType
 

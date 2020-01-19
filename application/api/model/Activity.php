@@ -16,7 +16,7 @@ class Activity extends BaseModel{
 //            foreach($list as $key=>$activity){
 //                array_push($ids,$activity->id);
 //            }
-            $activity = self::where('activity_type_id','=',$id)->paginate($size,true,['page'=>$page]);
+            $activity = self::where('activity_type_id','=',$id)->paginate($size,false,['page'=>$page]);
             return $activity;
         }
         public static function getDetailByActivityId($id){

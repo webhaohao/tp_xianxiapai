@@ -9,7 +9,6 @@
 namespace app\api\controller\v1;
 
 use app\api\model\About as AboutModel;
-use app\lib\exception\AboutMissException;
 use app\lib\exception\SuccessMessage;
 
 class About {
