@@ -65,7 +65,7 @@ Route::get('api/:version/second','api/:version.Address/second');
 
 Route::post('api/:version/create_activity','api/:version.Activity/createOrUpdateActivity');
 
-Route::get('api/:version/activity/byActivityType','api/:version.Activity/getActivitesByActivityTypeId');
+Route::post('api/:version/activity/filter','api/:version.Activity/getActivityByFilter');
 
 Route::post('api/:version/activity/join_activity','api/:version.Activity/userJoinActivity');
 

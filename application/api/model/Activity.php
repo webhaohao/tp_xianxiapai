@@ -10,13 +10,25 @@ namespace app\api\model;
 
 
 class Activity extends BaseModel{
-        public  static function getActivityByActivityTypeId($id,$page,$size){
-//            $list = self::all(['activity_type_id'=>$id]);
-//            $ids = [];
-//            foreach($list as $key=>$activity){
-//                array_push($ids,$activity->id);
-//            }
-            $activity = self::where('activity_type_id','=',$id)->paginate($size,false,['page'=>$page]);
+        protected $autoWriteTimestamp = true;
+        public  static function getActivitesByFilter($id,$tab_item_active,$categoryId,$page,$size){
+            $map=[];
+            if($id>0){
+                $map['activity_type_id'] =$id;
+            }
+            if($categoryId>0){
+                $map['category_id'] = $categoryId;
+            }
+            if($tab_item_active == '按热度'){
+                $activity = self::where($map)->order('join_people desc')->paginate($size,false,['page'=>$page]);
+            }
+            else if($tab_item_active == '按时间'){
+                $activity = self::where($map)->order('create_time desc')->paginate($size,false,['page'=>$page]);
+            }
+            else{
+                $activity = self::where($map)->order('integral desc')->paginate($size,false,['page'=>$page]);
+            }
+
             return $activity;
         }
         public static function getDetailByActivityId($id){

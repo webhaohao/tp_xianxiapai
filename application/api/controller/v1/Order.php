@@ -51,8 +51,11 @@ class Order extends BaseController {
         ];
     }
     public function getDetail($id){
+
         (new IDMustBePostiveInt())->goCheck();
+
         $orderDetail = OrderModel::get($id);
+
         if (!$orderDetail)
         {
             throw new OrderException();
@@ -61,6 +64,7 @@ class Order extends BaseController {
             ->hidden(['prepay_id']);
     }
     public function placeOrder(){
+
         (new OrderPlace())->goCheck();
 
         $products = input('post.product/a');

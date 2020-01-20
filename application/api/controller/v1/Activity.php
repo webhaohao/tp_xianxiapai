@@ -102,10 +102,15 @@ class Activity extends BaseController {
         }
         return json(new SuccessMessage(),201);
     }
-    // 根据客户端传入是个人活动还是组织活动....
-    public  function getActivitesByActivityTypeId($id,$page=1,$size=10){
-        //(new IDMustBePostiveInt()) -> goCheck();
-        $activity = ActivityModel::getActivityByActivityTypeId($id,$page=1,$size=10);
+
+    public  function getActivityByFilter(){
+        $params = input('post.');
+        $id = $params['id'];
+        $page = $params['page'] || 1;
+        $size = $params['size'] || 10;
+        $tab_item_active = $params['tabs_item_active'];
+        $categoryId = $params['categoryId'];
+        $activity = ActivityModel::getActivitesByFilter($id,$tab_item_active,$categoryId,$page,$size);
         return $activity;
     }
     public function getActivitesByCategoryId(){
