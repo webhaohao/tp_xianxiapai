@@ -20,7 +20,7 @@ class Activity extends BaseModel{
             return $activity;
         }
         public static function getDetailByActivityId($id){
-            return self::with(['users','items','items.img'])->find($id);
+            return self::with(['users','category','items','items.img'])->find($id);
         }
         public function items(){
             return $this -> hasMany('ActivityImage','activity_id','id');
@@ -29,10 +29,14 @@ class Activity extends BaseModel{
         public function users(){
             return $this->belongsToMany('User', 'user_activity', 'user_id', 'activity_id');
         }
+        public function category(){
+            return $this->belongsTo('Category','category_id','id');
+        }
         // 获取器
         public function getMainImgUrlAttr($value,$data){
             return config('setting.img_prefix').$value;
         }
+
         public function getStartTimeAttr($value,$data){
             return date('Y-m-d H:i',$value);
         }

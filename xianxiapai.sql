@@ -72,7 +72,12 @@ INSERT INTO `category` VALUES ('4', '娱乐', '7','3', null, null, null);
 INSERT INTO `category` VALUES ('5', '交友', '4','4', null, null, null);
 INSERT INTO `category` VALUES ('6', '旅游', '8','4', null, null, null);
 INSERT INTO `category` VALUES ('7', '学习', '9','4', null, null, null);
-
+INSERT INTO `category` VALUES ('8', '美术', '6','2', null, null, null);
+INSERT INTO `category` VALUES ('9', '游戏', '5','2', null, null, null);
+INSERT INTO `category` VALUES ('10', '娱乐', '7','2', null, null, null);
+INSERT INTO `category` VALUES ('11', '交友', '4','2', null, null, null);
+INSERT INTO `category` VALUES ('12', '旅游', '8','2', null, null, null);
+INSERT INTO `category` VALUES ('13', '学习', '9','2', null, null, null);
 -- ----------------------------
 -- Table structure for image
 -- ----------------------------

@@ -108,6 +108,9 @@ class Activity extends BaseController {
         $activity = ActivityModel::getActivityByActivityTypeId($id,$page=1,$size=10);
         return $activity;
     }
+    public function getActivitesByCategoryId(){
+
+    }
     public function wxUploadImage(){
         $serverName = (new Upload())->image();
         return [
