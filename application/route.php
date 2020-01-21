@@ -73,6 +73,8 @@ Route::get('api/:version/activity/byKeywords','api/:version.Activity/getActivity
 
 Route::post('api/:version/activity/search','api/:version.Activity/searchActivityByKeywords');
 
+Route::get('api/:version/activity/byActivityType','api/:version.Activity/getActivityByActivityTypeId');
+
 // get Join popleInfo by Activity
 
 Route::get('api/:version/activity/detail/:id','api/:version.Activity/getActivityDetailById');

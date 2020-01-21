@@ -113,6 +113,12 @@ class Activity extends BaseController {
         $activity = ActivityModel::getActivitesByFilter($id,$tab_item_active,$categoryId,$page,$size);
         return $activity;
     }
+    public function getActivityByActivityTypeId($page=1,$size=10,$id){
+        $pagingData = ActivityModel::where('activity_type_id ','=',$id)
+            ->order('create_time desc')
+            ->paginate($size,false,['page'=>$page]);
+        return $pagingData;
+    }
     public function getActivitesByCategoryId(){
 
     }
