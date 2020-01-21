@@ -441,7 +441,7 @@ CREATE TABLE  `activity` (
   `end_time` int(11) NOT NULL COMMENT '结束时间',
   `location` varchar(20) NOT NULL COMMENT '活动地点',
   `number` varchar(20) NOT NULL COMMENT '人数',
-  `detail` varchar(100) NOT NULL COMMENT '详情',
+  `detail` longtext NOT NULL COMMENT '详情',
   `delete_time` int(11) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   `release_id` int(11) NOT NULL COMMENT '外键',
@@ -456,7 +456,9 @@ CREATE TABLE  `activity` (
   PRIMARY KEY (`id`)
 --   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
-
+INSERT INTO `activity` (`id`, `title`, `start_time`, `end_time`, `location`, `number`, `detail`, `delete_time`, `create_time`, `release_id`, `category_id`, `activity_type_id`, `img_id`, `scope`, `integral`, `join_people`, `main_img_url`, `update_time`) VALUES
+(35, '模式口庙会', 1579612020, 1579705620, '模式口', '50', '模式口祈福哦', NULL, 1579612117, 65, 27, 2, NULL, 16, 10, 0, '/20200121/901a04750087cbf36985f12f61652dfe.jpg', 1579612117),
+(36, '颐和园看雪', 1579612020, 1579871220, '颐和园', '50', '去颐和园看雪啦', NULL, 1579612239, 65, 27, 2, NULL, 16, 10, 0, '/20200121/7fd94e1e011d7f4b94c4db10d45c2312.jpg', 1579612239);
 
 -- ----------------------------
 -- Table structure for activity_image

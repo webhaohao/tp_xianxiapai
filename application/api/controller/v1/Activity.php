@@ -106,15 +106,20 @@ class Activity extends BaseController {
     public  function getActivityByFilter(){
         $params = input('post.');
         $id = $params['id'];
-        $page = $params['page'] || 1;
-        $size = $params['size'] || 10;
+        $page = $params['page'];
+        $size = $params['size'];
         $tab_item_active = $params['tabs_item_active'];
         $categoryId = $params['categoryId'];
-        $activity = ActivityModel::getActivitesByFilter($id,$tab_item_active,$categoryId,$page,$size);
-        return $activity;
+        $activityPages = ActivityModel::getActivitesByFilter($id,$tab_item_active,$categoryId,$page,$size);
+        $data = $activityPages->hidden(['detail'])->toArray();
+        return [
+            'data' => $data,
+            'current_page'=>$activityPages->getCurrentPage(),
+            'total' =>$activityPages->total()
+        ];
     }
     public function getActivityByActivityTypeId($page=1,$size=10,$id){
-        $pagingData = ActivityModel::where('activity_type_id ','=',$id)
+        $pagingData = ActivityModel::where('activity_type_id','=',$id)
             ->order('create_time desc')
             ->paginate($size,false,['page'=>$page]);
         return $pagingData;
