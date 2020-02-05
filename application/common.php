@@ -17,9 +17,11 @@
  * @param array $params
  * @return mixed
  */
-function curl_post($url, array $params = array())
+function curl_post($url, array $params = array(),$file=false)
 {
-    $data_string = json_encode($params);
+    if(!$file){
+        $params = json_encode($params,JSON_UNESCAPED_UNICODE);
+    }
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -27,13 +29,16 @@ function curl_post($url, array $params = array())
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-    curl_setopt(
-        $ch, CURLOPT_HTTPHEADER,
-        array(
-            'Content-Type: application/json'
-        )
-    );
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    if(!$file){
+        curl_setopt(
+            $ch, CURLOPT_HTTPHEADER,
+            array(
+                'Content-Type: application/json'
+            )
+        );
+    }
     $data = curl_exec($ch);
     curl_close($ch);
     return ($data);

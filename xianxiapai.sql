@@ -453,6 +453,7 @@ CREATE TABLE  `activity` (
   `join_people` int(11) NOT NULL DEFAULT '0' COMMENT '参加的人数',
   `main_img_url` varchar(255) DEFAULT NULL COMMENT '主图ID号，这是一个反范式设计，有一定的冗余',
   `update_time` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'  COMMENT '活动状态 0 未开始, 1 已开始',
   PRIMARY KEY (`id`)
 --   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;

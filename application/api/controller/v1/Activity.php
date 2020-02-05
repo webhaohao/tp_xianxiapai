@@ -17,12 +17,14 @@ use app\api\model\ThirdApp;
 use app\api\model\User as UserModel;
 use app\api\model\ActivityType as ActivityTypeModel;
 use app\api\model\UserActivity;
+use app\api\service\ContentCheck;
 use app\api\service\Token as TokenService;
 use app\api\service\Activity as ActivityService;
 use app\api\service\Upload;
 use app\api\validate\ActivityNew;
 use app\lib\enum\ScopeEnum;
 use app\lib\exception\ActivityException;
+use app\lib\exception\ContentException;
 use app\lib\exception\SuccessMessage;
 use app\lib\exception\UserException;
 use think\Cache;
@@ -42,11 +44,18 @@ class Activity extends BaseController {
         $uid = TokenService::getCurrentUid();
         $scope = TokenService::getCurrentTokenVar('scope');
         $dataArray = $validate -> getDataByRule(input('post.'));
+        // 检测发布内容是否合法
+        $contentCheck = new ContentCheck();
+        $titleIsVaild = $contentCheck ->verifyMsg($dataArray['title']);
+        $detailVaild  = $contentCheck ->verifyMsg($dataArray['detail']);
+        $datailLocation = $contentCheck ->verifyMsg($dataArray['location']);
+        if(!$titleIsVaild || !$detailVaild || !$datailLocation){
+            throw new ContentException([
+                'msg' => '发布内容不合法,请检查发布内容!'
+            ]);
+        }
         if($scope == ScopeEnum::User) {
             $user = UserModel::get($uid);
-            $integral = $user -> integral;
-            $integral += $dataArray['number'];
-            $user -> integral = $integral;
             $user ->save();
         }
         else{
@@ -65,7 +74,7 @@ class Activity extends BaseController {
         $dataArray['scope'] = $scope;
         $dataArray['release_id'] = $uid;
         // 活动积分修改为活动的人数
-        $dataArray['integral'] = $dataArray['number'];
+        $dataArray['integral'] = ceil($dataArray['number']*0.15);
         $activityModel = new ActivityModel();
         $activityModel ->data($dataArray,true);
         $activityModel ->save($dataArray);
@@ -89,8 +98,6 @@ class Activity extends BaseController {
         }
         // 如果权限的scope为用户 则在 user_activity 插入一条记录
         if($scope == ScopeEnum::User){
-
-            // UserActivity::save();
             $userActivity =  new UserActivity();
             $userActivity->data(
                     [
@@ -124,21 +131,22 @@ class Activity extends BaseController {
             ->paginate($size,false,['page'=>$page]);
         return $pagingData;
     }
-    public function getActivitesByCategoryId(){
-
-    }
     public function wxUploadImage(){
         $serverName = (new Upload())->image();
-        return [
-             'url' => config('setting.img_prefix').$serverName
-        ];
-    }
-
-    public function getReleaserInfoByScopeAndUserId(){
-        $data = input('post.');
-        if($data['scope']==16){
-           return UserModel::get($data['user_id']);
+        $contentCheck = new ContentCheck();
+        $files = $_SERVER['DOCUMENT_ROOT'].'/images'.$serverName;
+        $result = $contentCheck ->verifyImage($files);
+        if($result){
+            return [
+                'url' => config('setting.img_prefix').$serverName
+            ];
         }
+        else{
+            return [
+                'url' =>''
+            ];
+        }
+
     }
 
     public function getActivityDetailById($id)
@@ -148,30 +156,42 @@ class Activity extends BaseController {
     public function userJoinActivity(){
         $activityId = input('post.activityId');
         $activityService = new ActivityService();
-        $isJoin = $activityService->userJoinActivity($activityId);
         $scope = TokenService::getCurrentTokenVar('scope');
         $uid = TokenService::getCurrentUid();
         $user = UserModel::get($uid);
         if(!$user){
             throw new UserException();
         }
-        if($isJoin){
-            if($scope == ScopeEnum::User){
-
-                $userActivity =  new UserActivity();
-                $userActivity->data(
-                    [
-                        'user_id' => $uid,
-                        'activity_id'=>$activityId
-                    ]
-                );
-                $userActivity->save();
-                return json(new SuccessMessage(),201);
+        else{
+            // 查看活动当前用户是否已经参加
+            $isJoin = $activityService->userJoinActivity($activityId);
+            // 查看活动的状态是否已经开始
+            // 1 已经开始 0 未开始
+            $activity = ActivityModel::get($activityId);
+            $status = $activity->status;
+            if($status == 1){
+                throw new ActivityException([
+                    'msg' =>'活动已经开始,无法报名!'
+                ]);
+            }
+            if($isJoin){
+                if($scope == ScopeEnum::User){
+                    $userActivity =  new UserActivity();
+                    $userActivity->data(
+                        [
+                            'user_id' => $uid,
+                            'activity_id'=>$activityId
+                        ]
+                    );
+                    $userActivity->save();
+                    return json(new SuccessMessage(),201);
+                }
+            }
+            else{
+                throw new ActivityException();
             }
         }
-        else{
-            throw new ActivityException();
-        }
+
     }
 
     public function getActivityByKeywords(){
